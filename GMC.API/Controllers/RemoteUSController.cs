@@ -63,6 +63,7 @@ namespace GMC.API.Controllers
             var createdRemoteUS = await remoteUSService.CreateRemoteUSAsync(entityToAdd);
             return Ok(createdRemoteUS);
         }
+        
 
 
         [HttpPut("{id}")]
