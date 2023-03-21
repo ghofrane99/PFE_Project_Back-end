@@ -19,6 +19,8 @@ builder.Services.AddCors((corsoptions) =>
         policyoptions.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
     });
 });
+
+
 builder.Services.AddScoped<IPickListRepository, PickListRepository>();
 builder.Services.AddScoped<IPickListService, PickListService>();
 builder.Services.AddScoped<ILigneProductionRepository, LigneProductionRepository>();
@@ -37,6 +39,7 @@ builder.Services.AddScoped<IRemoteUSRepository, RemoteUSRepository>();
 builder.Services.AddScoped<IRemoteUSService, RemoteUSService>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
