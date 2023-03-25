@@ -8,7 +8,6 @@
         public string RobotTraitement { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime DateMaj { get; set; }
-        public string Hostname { get; set; }
         public int Boucle { get; set; }
         public int Forced { get; set; }
         public int ProduitForced { get; set; }

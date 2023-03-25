@@ -45,12 +45,11 @@ namespace GMC.API.Controllers
                 OT = createRemoteUS.OT,
                 EtatCreate = createRemoteUS.EtatCreate,
                 EtatConfirm = createRemoteUS.EtatConfirm,
-                DateCreation = createRemoteUS.DateCreation,
-                DateMaj = createRemoteUS.DateMaj,
+                DateCreation = DateTime.Now,
+                DateMaj = null,
                 Quantite = createRemoteUS.Quantite,
                 ProduitCode = createRemoteUS.ProduitCode,
                 Source = createRemoteUS.Source,
-                Hostanme = createRemoteUS.Hostanme,
                 USPickLists = new List<USPickList>()
             };
 
@@ -94,12 +93,10 @@ namespace GMC.API.Controllers
             existingRemoteUS.OT = updateRemoteUS.OT;
             existingRemoteUS.EtatCreate = updateRemoteUS.EtatCreate;
             existingRemoteUS.EtatConfirm = updateRemoteUS.EtatConfirm;
-            existingRemoteUS.DateCreation = updateRemoteUS.DateCreation;
-            existingRemoteUS.DateMaj = updateRemoteUS.DateMaj;
+            existingRemoteUS.DateMaj = DateTime.Now;
             existingRemoteUS.Quantite = updateRemoteUS.Quantite;
             existingRemoteUS.ProduitCode = updateRemoteUS.ProduitCode;
             existingRemoteUS.Source = updateRemoteUS.Source;
-            existingRemoteUS.Hostanme = updateRemoteUS.Hostanme;
             existingRemoteUS.USPickLists = usPickListsToAdd;
 
             var updatedRemoteUS = await remoteUSService.UpdateRemoteUSAsync(existingRemoteUS);

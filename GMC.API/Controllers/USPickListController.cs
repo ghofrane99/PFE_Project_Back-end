@@ -42,9 +42,8 @@ namespace GMC.API.Controllers
                 Quantite = createUSPickList.Quantite,
                 StatusId = createUSPickList.StatusId,
                 CodeProduit = createUSPickList.CodeProduit,
-                DateCreation = createUSPickList.DateCreation,
-                DateMaj = createUSPickList.DateMaj,
-                Hostname = createUSPickList.Hostname,
+                DateCreation = DateTime.Now,
+                DateMaj = null,
                 Source = createUSPickList.Source,
                 CreationPar = createUSPickList.CreationPar,
                 MajPar = createUSPickList.MajPar
@@ -74,8 +73,7 @@ namespace GMC.API.Controllers
             entityToUpdate.Quantite = updateUSPickList.Quantite;
             entityToUpdate.StatusId = updateUSPickList.StatusId;
             entityToUpdate.CodeProduit = updateUSPickList.CodeProduit;
-            entityToUpdate.DateMaj = updateUSPickList.DateMaj;
-            entityToUpdate.Hostname = updateUSPickList.Hostname;
+            entityToUpdate.DateMaj = DateTime.Now;
             entityToUpdate.Source = updateUSPickList.Source;
             entityToUpdate.MajPar = updateUSPickList.MajPar;
 

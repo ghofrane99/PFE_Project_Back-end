@@ -23,7 +23,8 @@ namespace GMC.Data
         public DbSet<USPickList> USPickList { get; set; }
         public DbSet<InformationUS> InformationUS { get; set; }
         public DbSet<RemoteUS> RemoteUS { get; set; }
-        
+        public DbSet<User> User { get; set; }
+
 
 
 

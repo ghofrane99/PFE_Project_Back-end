@@ -39,9 +39,8 @@ namespace GMC.API.Controllers
                 Etat = createLigneProduction.Etat,
                 Observation = createLigneProduction.Observation,
                 RobotTraitement = createLigneProduction.RobotTraitement,
-                DateCreation = createLigneProduction.DateCreation,
-                DateMaj = createLigneProduction.DateMaj,
-                Hostname = createLigneProduction.Hostname,
+                DateCreation = DateTime.Now,
+                DateMaj = null,
                 Boucle = createLigneProduction.Boucle,
                 Forced = createLigneProduction.Forced,
                 ProduitForced = createLigneProduction.ProduitForced
@@ -65,9 +64,7 @@ namespace GMC.API.Controllers
             entityToUpdate.Etat = updateLigneProduction.Etat;
             entityToUpdate.Observation = updateLigneProduction.Observation;
             entityToUpdate.RobotTraitement = updateLigneProduction.RobotTraitement;
-            entityToUpdate.DateCreation = updateLigneProduction.DateCreation;
-            entityToUpdate.DateMaj = updateLigneProduction.DateMaj;
-            entityToUpdate.Hostname = updateLigneProduction.Hostname;
+            entityToUpdate.DateMaj = DateTime.Now;
             entityToUpdate.Boucle = updateLigneProduction.Boucle;
             entityToUpdate.Forced = updateLigneProduction.Forced;
             entityToUpdate.ProduitForced = updateLigneProduction.ProduitForced;

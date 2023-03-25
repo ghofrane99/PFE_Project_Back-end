@@ -17,8 +17,7 @@ namespace GMC.Core
         public string Observation { get; set; } = string.Empty;
         public string RobotTraitement { get; set; } = string.Empty;
         public DateTime DateCreation { get; set; }
-        public DateTime DateMaj { get; set; }
-        public string Hostname { get; set; } = string.Empty;
+        public DateTime? DateMaj { get; set; }
         public int Boucle { get; set; }
         public int Forced { get; set; }
         public int ProduitForced { get; set; }

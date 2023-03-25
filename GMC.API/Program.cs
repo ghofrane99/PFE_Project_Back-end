@@ -12,14 +12,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<DataContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnectionstring")));
-builder.Services.AddCors((corsoptions) =>
-{
-    corsoptions.AddPolicy("Mypolicy", (policyoptions) =>
-    {
-        policyoptions.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
-    });
-});
-
 
 builder.Services.AddScoped<IPickListRepository, PickListRepository>();
 builder.Services.AddScoped<IPickListService, PickListService>();
@@ -37,6 +29,16 @@ builder.Services.AddScoped<IInformationUSRepository, InformationUSRepository>();
 builder.Services.AddScoped<IInformationUSService, InformationUSService>();
 builder.Services.AddScoped<IRemoteUSRepository, RemoteUSRepository>();
 builder.Services.AddScoped<IRemoteUSService, RemoteUSService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddCors((corsoptions) =>
+{
+    corsoptions.AddPolicy("Mypolicy", (policyoptions) =>
+    {
+        policyoptions.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -47,6 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("Mypolicy");
 
 app.UseAuthorization();

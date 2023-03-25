@@ -35,23 +35,22 @@ namespace GMC.API.Controllers
             {
                 NumPickList = createPickList.NumPickList,
                 Magasin = createPickList.Magasin,
-                DateCreation = createPickList.DateCreation,
-                DateMaj = createPickList.DateMaj,
+                DateCreation = DateTime.Now,
+                DateMaj = null,
                 TypePickList = createPickList.TypePickList,
                 CodeProduit = createPickList.CodeProduit,
-                DateLivraison = createPickList.DateLivraison,
-                DateServi = createPickList.DateServi,
+                DateLivraison = null,
+                DateServi = null,
                 NbUSServi = createPickList.NbUSServi,
                 NbUSRecept = createPickList.NbUSRecept,
-                Hostname = createPickList.Hostname,
                 Observation = createPickList.Observation,
                 IdCauseServi = createPickList.IdCauseServi,
                 PrintedServi = createPickList.PrintedServi,
                 DemandeAnnulation = createPickList.DemandeAnnulation,
                 DemandeSuppPar = createPickList.DemandeSuppPar,
                 ApprobSuppPar = createPickList.ApprobSuppPar,
-                DateDemandeSuppression = createPickList.DateDemandeSuppression,
-                DateApprobSuppression = createPickList.DateApprobSuppression,
+                DateDemandeSuppression = null,
+                DateApprobSuppression = null,
                 NbUSReceptCond = createPickList.NbUSReceptCond,
                 SetEmp = createPickList.SetEmp,
                 LigneProductionId = createPickList.LigneProductionId,
@@ -76,15 +75,13 @@ namespace GMC.API.Controllers
 
             entityToUpdate.NumPickList = updatePickList.NumPickList;
             entityToUpdate.Magasin = updatePickList.Magasin;
-            entityToUpdate.DateCreation = updatePickList.DateCreation;
-            entityToUpdate.DateMaj = updatePickList.DateMaj;
+            entityToUpdate.DateMaj = DateTime.Now;
             entityToUpdate.TypePickList = updatePickList.TypePickList;
             entityToUpdate.CodeProduit = updatePickList.CodeProduit;
             entityToUpdate.DateLivraison = updatePickList.DateLivraison;
             entityToUpdate.DateServi = updatePickList.DateServi;
             entityToUpdate.NbUSServi = updatePickList.NbUSServi;
             entityToUpdate.NbUSRecept = updatePickList.NbUSRecept;
-            entityToUpdate.Hostname = updatePickList.Hostname;
             entityToUpdate.Observation = updatePickList.Observation;
             entityToUpdate.IdCauseServi = updatePickList.IdCauseServi;
             entityToUpdate.PrintedServi = updatePickList.PrintedServi;

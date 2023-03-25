@@ -11,11 +11,10 @@ namespace GMC.API.ViewModel.Get
         public int EtatCreate { get; set; }
         public int EtatConfirm { get; set; }
         public DateTime DateCreation { get; set; }
-        public DateTime DateMaj { get; set; }
+        public DateTime? DateMaj { get; set; }
         public int Quantite { get; set; }
         public int ProduitCode { get; set; }
         public string Source { get; set; }
-        public string Hostanme { get; set; }
         public List<string> NumUSPickLists { get; set; }
     }
 }

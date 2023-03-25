@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GMC.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class V1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,8 +22,7 @@ namespace GMC.Data.Migrations
                     Observation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RobotTraitement = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hostname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Boucle = table.Column<int>(type: "int", nullable: false),
                     Forced = table.Column<int>(type: "int", nullable: false),
                     ProduitForced = table.Column<int>(type: "int", nullable: false)
@@ -42,11 +41,10 @@ namespace GMC.Data.Migrations
                     CodeProduit = table.Column<int>(type: "int", nullable: false),
                     Seuil = table.Column<int>(type: "int", nullable: false),
                     Etat = table.Column<int>(type: "int", nullable: false),
-                    Preparateur = table.Column<int>(type: "int", nullable: false),
                     DateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Designation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Hostname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CreerPar = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,11 +63,10 @@ namespace GMC.Data.Migrations
                     EtatCreate = table.Column<int>(type: "int", nullable: false),
                     EtatConfirm = table.Column<int>(type: "int", nullable: false),
                     DateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Quantite = table.Column<int>(type: "int", nullable: false),
                     ProduitCode = table.Column<int>(type: "int", nullable: false),
-                    Source = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Hostanme = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Source = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,6 +87,25 @@ namespace GMC.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    IdUser = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.IdUser);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PickList",
                 columns: table => new
                 {
@@ -98,22 +114,21 @@ namespace GMC.Data.Migrations
                     NumPickList = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Magasin = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TypePickList = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CodeProduit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateLivraison = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateServi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateLivraison = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateServi = table.Column<DateTime>(type: "datetime2", nullable: true),
                     NbUSServi = table.Column<int>(type: "int", nullable: false),
                     NbUSRecept = table.Column<int>(type: "int", nullable: false),
-                    Hostname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Observation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdCauseServi = table.Column<int>(type: "int", nullable: false),
                     PrintedServi = table.Column<int>(type: "int", nullable: false),
                     DemandeAnnulation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DemandeSuppPar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApprobSuppPar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateDemandeSuppression = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateApprobSuppression = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDemandeSuppression = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateApprobSuppression = table.Column<DateTime>(type: "datetime2", nullable: true),
                     NbUSReceptCond = table.Column<int>(type: "int", nullable: false),
                     SetEmp = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LigneProductionId = table.Column<int>(type: "int", nullable: false),
@@ -183,8 +198,7 @@ namespace GMC.Data.Migrations
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     CodeProduit = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hostname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateMaj = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Source = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationPar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MajPar = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -327,6 +341,9 @@ namespace GMC.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "RemoteUSUSPickList");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Produit");

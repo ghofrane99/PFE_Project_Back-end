@@ -45,7 +45,7 @@ namespace GMC.Data
 
         public Task<List<PickList>> GetPickListsAsync()
         {
-            var pickLists = dataContext.PickList.Include(c => c.LigneProduction).Include(s => s.Status).ToListAsync();
+            var pickLists = dataContext.PickList.ToListAsync();
             return pickLists;
         }
         public Task<PickList> GetPickListAsync(int pickListId)

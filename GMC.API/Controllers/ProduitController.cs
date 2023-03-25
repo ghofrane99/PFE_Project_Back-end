@@ -32,11 +32,10 @@ namespace GMC.API.Controllers
                 CodeProduit = createProduit.CodeProduit,
                 Seuil = createProduit.Seuil,
                 Etat = createProduit.Etat,
-                Preparateur = createProduit.Preparateur,
-                DateCreation = createProduit.DateCreation,
-                DateMaj = createProduit.DateMaj,
+                DateCreation = DateTime.Now,
+                DateMaj = null,
                 Designation = createProduit.Designation,
-                Hostname = createProduit.Hostname
+                CreerPar = createProduit.CreerPar
 
             };
 
@@ -56,11 +55,9 @@ namespace GMC.API.Controllers
             entityToUpdate.CodeProduit = updateProduit.CodeProduit;
             entityToUpdate.Seuil = updateProduit.Seuil;
             entityToUpdate.Etat = updateProduit.Etat;
-            entityToUpdate.Preparateur = updateProduit.Preparateur;
-            entityToUpdate.DateCreation = updateProduit.DateCreation;
-            entityToUpdate.DateMaj = updateProduit.DateMaj;
+            entityToUpdate.DateMaj = DateTime.Now;
             entityToUpdate.Designation = updateProduit.Designation;
-            entityToUpdate.Hostname = updateProduit.Hostname;
+            entityToUpdate.CreerPar = updateProduit.CreerPar;
 
 
 

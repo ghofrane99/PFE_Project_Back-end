@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMC.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230318195729_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230325023803_V1")]
+    partial class V1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,7 +154,7 @@ namespace GMC.Data.Migrations
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateMaj")
+                    b.Property<DateTime?>("DateMaj")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Etat")
@@ -162,10 +162,6 @@ namespace GMC.Data.Migrations
 
                     b.Property<int>("Forced")
                         .HasColumnType("int");
-
-                    b.Property<string>("Hostname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observation")
                         .IsRequired()
@@ -199,22 +195,22 @@ namespace GMC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateApprobSuppression")
+                    b.Property<DateTime?>("DateApprobSuppression")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateDemandeSuppression")
+                    b.Property<DateTime?>("DateDemandeSuppression")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateLivraison")
+                    b.Property<DateTime?>("DateLivraison")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateMaj")
+                    b.Property<DateTime?>("DateMaj")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateServi")
+                    b.Property<DateTime?>("DateServi")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DemandeAnnulation")
@@ -222,10 +218,6 @@ namespace GMC.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DemandeSuppPar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Hostname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -290,10 +282,14 @@ namespace GMC.Data.Migrations
                     b.Property<int>("CodeProduit")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreerPar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateMaj")
+                    b.Property<DateTime?>("DateMaj")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Designation")
@@ -301,13 +297,6 @@ namespace GMC.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Etat")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Hostname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Preparateur")
                         .HasColumnType("int");
 
                     b.Property<int>("Seuil")
@@ -329,7 +318,7 @@ namespace GMC.Data.Migrations
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateMaj")
+                    b.Property<DateTime?>("DateMaj")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EtatConfirm")
@@ -337,10 +326,6 @@ namespace GMC.Data.Migrations
 
                     b.Property<int>("EtatCreate")
                         .HasColumnType("int");
-
-                    b.Property<string>("Hostanme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MAPA")
                         .IsRequired()
@@ -401,12 +386,8 @@ namespace GMC.Data.Migrations
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateMaj")
+                    b.Property<DateTime?>("DateMaj")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Hostname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MajPar")
                         .IsRequired()
@@ -435,6 +416,47 @@ namespace GMC.Data.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("USPickList");
+                });
+
+            modelBuilder.Entity("GMC.Core.User", b =>
+                {
+                    b.Property<int>("IdUser")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUser"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdUser");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("RemoteUSUSPickList", b =>

@@ -15,26 +15,27 @@ namespace GMC.Core
         public string NumPickList { get; set; } = string.Empty;
         public string Magasin { get; set; } = string.Empty;
         public DateTime DateCreation { get; set; }
-        public DateTime DateMaj { get; set; }
+        public DateTime? DateMaj { get; set; }
         public string TypePickList { get; set; } = string.Empty;
         public string CodeProduit { get; set; } = string.Empty;
-        public DateTime DateLivraison { get; set; }
-        public DateTime DateServi { get; set; }
+        public DateTime? DateLivraison { get; set; }
+        public DateTime? DateServi { get; set; }
         public int NbUSServi { get; set; }
         public int NbUSRecept { get; set; }
-        public string Hostname { get; set; } = string.Empty;
         public string Observation { get; set; } = string.Empty;
         public int IdCauseServi { get; set; }
         public int PrintedServi { get; set; }
         public string DemandeAnnulation { get; set; } = string.Empty;
         public string DemandeSuppPar { get; set; } = string.Empty;
         public string ApprobSuppPar { get; set; } = string.Empty;
-        public DateTime DateDemandeSuppression { get; set; }
-        public DateTime DateApprobSuppression { get; set; }
+        public DateTime? DateDemandeSuppression { get; set; }
+        public DateTime? DateApprobSuppression { get; set; }
         public int NbUSReceptCond { get; set; }
         public string SetEmp { get; set; } = string.Empty;
+        [JsonIgnore]
         public LigneProduction LigneProduction { get; set; }
         public int LigneProductionId { get; set; }
+        [JsonIgnore]
         public Status Status { get; set; }
         public int StatusId { get; set; }
         [JsonIgnore]
