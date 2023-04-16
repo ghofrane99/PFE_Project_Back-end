@@ -12,7 +12,7 @@ namespace GMC.Service
         DetailPickList GetDetailPickList(int detailPickListId);
         Task<DetailPickList> GetDetailPickListAsync(int detailPickListId);
         List<DetailPickList> GetDetailPickLists();
-        Task<List<DetailPickList>> GetDetailPickListsAsync();
+        Task<List<DetailPickListDTO>> GetDetailPickListsAsync();
         Task<DetailPickList> CreateDetailPickListAsync(DetailPickList detailPickList);
         Task<DetailPickList> UpdateDetailPickListAsync(DetailPickList detailPickList);
         Task<bool> DeleteDetailPickListAsync(int detailPickListId);

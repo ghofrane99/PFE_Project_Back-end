@@ -47,10 +47,25 @@ namespace GMC.Data
             return usPickLists;
         }
 
-        public Task<List<USPickList>> GetUSPickListsAsync()
+        public async Task<List<USPickListDTO>> GetUSPickListsAsync()
         {
 
-            var usPickLists = dataContext.USPickList.ToListAsync();
+            var usPickLists = await dataContext.USPickList.Include(p=> p.PickList).Include(h=> h.Status)
+                .Select(p=> new USPickListDTO
+                {NumUS = p.NumUS,
+                PickList=p.PickList.NumPickList,
+                PickListId=p.PickListId,
+                Quantite=p.Quantite,
+                Status=p.Status.Code,
+                StatusId=p.StatusId,
+                CodeProduit=p.CodeProduit,
+                DateCreation=p.DateCreation,
+                DateMaj=p.DateMaj,
+                Source=p.Source,
+                CreationPar=p.CreationPar,
+                MajPar=p.MajPar,
+
+                }).ToListAsync();
             return usPickLists;
         }
 

@@ -12,7 +12,7 @@ namespace GMC.Service
         USPickList GetUSPickList(string NumUS);
         Task<USPickList> GetUSPickListAsync(string NumUS);
         List<USPickList> GetUSPickLists();
-        Task<List<USPickList>> GetUSPickListsAsync();
+        Task<List<USPickListDTO>> GetUSPickListsAsync();
         Task<USPickList> CreateUSPickListAsync(USPickList usPickList);
         Task<USPickList> UpdateUSPickListAsync(USPickList usPickList);
         Task<bool> DeleteUSPickListAsync(string NumUS);

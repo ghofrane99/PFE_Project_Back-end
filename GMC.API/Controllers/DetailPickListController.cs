@@ -33,11 +33,11 @@ namespace GMC.API.Controllers
             {
                 PickListId = createDetailPickList.PickListId,
                 ProduitId = createDetailPickList.ProduitId,
-                Emplacement = createDetailPickList.Emplacement,
+                Emplacement = null,
                 QuantiteDemande = createDetailPickList.QuantiteDemande,
                 StatusId = createDetailPickList.StatusId,
-                NombreUS = createDetailPickList.NombreUS,
-                Skipped = createDetailPickList.Skipped
+                NombreUS = null,
+                Skipped = null
 
             };
 
@@ -55,13 +55,9 @@ namespace GMC.API.Controllers
                 return NotFound();
             }
 
-            entityToUpdate.PickListId = updateDetailPickList.PickListId;
-            entityToUpdate.ProduitId = updateDetailPickList.ProduitId;
-            entityToUpdate.Emplacement = updateDetailPickList.Emplacement;
-            entityToUpdate.QuantiteDemande = updateDetailPickList.QuantiteDemande;
+            
             entityToUpdate.StatusId = updateDetailPickList.StatusId;
-            entityToUpdate.NombreUS = updateDetailPickList.NombreUS;
-            entityToUpdate.Skipped = updateDetailPickList.Skipped;
+           
 
             var updatedDetailPickList = await detailPickListService.UpdateDetailPickListAsync(entityToUpdate);
             return Ok(updatedDetailPickList);

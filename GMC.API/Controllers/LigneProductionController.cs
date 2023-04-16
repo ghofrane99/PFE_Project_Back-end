@@ -17,11 +17,12 @@ namespace GMC.API.Controllers
     public class LigneProductionController : ControllerBase
     {
 
-
+        private readonly DataContext dataContext;
         private readonly ILigneProductionService ligneProductionService;
-        public LigneProductionController(ILigneProductionService ligneProductionService)
+        public LigneProductionController(ILigneProductionService ligneProductionService, DataContext dataContext)
         {
             this.ligneProductionService = ligneProductionService;
+            this.dataContext = dataContext;
         }
         [HttpGet]
         public async Task<IActionResult> GetLigneProduction()
@@ -83,5 +84,12 @@ namespace GMC.API.Controllers
             var isSucces = await ligneProductionService.DeleteLigneProductionAsync(id);
             return Ok();
         }
+        [HttpGet("checkCode/{code}")]
+        public async Task<ActionResult<bool>> CheckCodeExists(string code)
+        {
+            var result = await dataContext.LigneProduction.AnyAsync(lp => lp.CodeLigneProduction == code);
+            return Ok(result);
+        }
+
     }
 }

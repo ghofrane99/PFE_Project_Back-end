@@ -1,9 +1,11 @@
 ﻿using GMC.API.ViewModel.Create;
 using GMC.API.ViewModel.Update;
 using GMC.Core;
+using GMC.Data;
 using GMC.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GMC.API.Controllers
 {
@@ -11,10 +13,12 @@ namespace GMC.API.Controllers
     [ApiController]
     public class ProduitController : ControllerBase
     {
+        private readonly DataContext dataContext;
         private readonly IProduitService produitService;
-        public ProduitController(IProduitService produitService)
+        public ProduitController(IProduitService produitService, DataContext dataContext)
         {
             this.produitService = produitService;
+            this.dataContext = dataContext;
         }
 
         [HttpGet]
@@ -73,6 +77,12 @@ namespace GMC.API.Controllers
                 return NotFound();
             var isSucces = await produitService.DeleteProduitAsync(id);
             return Ok();
+        }
+        [HttpGet("checkCode/{code}")]
+        public async Task<ActionResult<bool>> CheckCodeExists(int code)
+        {
+            var result = await dataContext.Produit.AnyAsync(lp => lp.CodeProduit ==code);
+            return Ok(result);
         }
 
     }

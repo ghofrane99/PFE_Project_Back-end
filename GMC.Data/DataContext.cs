@@ -48,6 +48,8 @@ namespace GMC.Data
                 .HasOne(d => d.Status)
                 .WithMany(s => s.DetailPickLists)
                 .HasForeignKey(d => d.StatusId);
+           
+           
 
 
             modelBuilder.Entity<Status>()
@@ -77,5 +79,7 @@ namespace GMC.Data
         .UsingEntity(j => j.ToTable("RemoteUSUSPickList"));
 
         }
+      
+           
     }
 }

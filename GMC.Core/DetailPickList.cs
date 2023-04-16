@@ -19,12 +19,12 @@ namespace GMC.Core
         [JsonIgnore]
         public Produit Produit { get; set; }
         public int ProduitId { get; set; }
-        public string Emplacement { get; set; } = string.Empty;
+        public string? Emplacement { get; set; } = string.Empty;
         public int QuantiteDemande { get; set; }
         [JsonIgnore]
         public Status Status { get; set; }
         public int StatusId { get; set; }
-        public int NombreUS { get; set; }
-        public int Skipped { get; set; }
+        public int? NombreUS { get; set; }
+        public int? Skipped { get; set; }
     }
 }

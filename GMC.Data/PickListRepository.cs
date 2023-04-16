@@ -43,11 +43,43 @@ namespace GMC.Data
 
         }
 
-        public Task<List<PickList>> GetPickListsAsync()
+        public async Task<List<PickListDTO>> GetPickListsAsync()
         {
-            var pickLists = dataContext.PickList.ToListAsync();
+            var pickLists = await dataContext.PickList.Include(p => p.LigneProduction).Include(p => p.Status)
+                                          .Select(p => new PickListDTO
+                                          {
+                                              IdPickList = p.IdPickList,
+                                              NumPickList = p.NumPickList,
+                                              Magasin = p.Magasin,
+                                              DateCreation = p.DateCreation,
+                                              DateMaj = p.DateMaj,
+                                              TypePickList = p.TypePickList,
+                                              CodeProduit = p.CodeProduit,
+                                              DateLivraison = p.DateLivraison,
+                                              DateServi = p.DateServi,
+                                              NbUSServi = p.NbUSServi,
+                                              NbUSRecept = p.NbUSRecept,
+                                              Observation = p.Observation,
+                                              IdCauseServi = p.IdCauseServi,
+                                              PrintedServi = p.PrintedServi,
+                                              DemandeAnnulation = p.DemandeAnnulation,
+                                              DemandeSuppPar = p.DemandeSuppPar,
+                                              ApprobSuppPar = p.ApprobSuppPar,
+                                              DateDemandeSuppression = p.DateDemandeSuppression,
+                                              DateApprobSuppression = p.DateApprobSuppression,
+                                              NbUSReceptCond = p.NbUSReceptCond,
+                                              SetEmp = p.SetEmp,
+                               
+                                              CodeLigneProduction = p.LigneProduction.CodeLigneProduction,
+                                              Code = p.Status.Code,
+                                              LigneProductionId = p.LigneProductionId,
+                                              StatusId = p.StatusId,
+                                          })
+                                          .ToListAsync();
+
             return pickLists;
         }
+
         public Task<PickList> GetPickListAsync(int pickListId)
         {
             return this.dataContext.PickList.FindAsync(pickListId).AsTask();

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using GMC.API.ViewModel.Update;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,17 +16,27 @@ namespace GMC.API.Controllers
     [ApiController]
     public class PickListController : ControllerBase
     {
+        private DataContext dataContext;
         private readonly IPickListService pickListService;
-        public PickListController(IPickListService pickListService)
+        public PickListController(IPickListService pickListService, DataContext dataContext)
         {
             this.pickListService = pickListService;
+            this.dataContext = dataContext;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> Get(int id)
+        {
+            var pickList = await pickListService.GetPickListAsync(id);
+            return Ok(pickList);
+        }
+
         // GET: api/<PickListController>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
             var pickLists = await pickListService.GetPickListsAsync();
             return Ok(pickLists);
+
         }
 
         [HttpPost]
@@ -34,25 +45,25 @@ namespace GMC.API.Controllers
             var entityToAdd = new PickList()
             {
                 NumPickList = createPickList.NumPickList,
-                Magasin = createPickList.Magasin,
+                Magasin = null,
                 DateCreation = DateTime.Now,
                 DateMaj = null,
-                TypePickList = createPickList.TypePickList,
-                CodeProduit = createPickList.CodeProduit,
+                TypePickList = null,
+                CodeProduit = null,
                 DateLivraison = null,
                 DateServi = null,
-                NbUSServi = createPickList.NbUSServi,
-                NbUSRecept = createPickList.NbUSRecept,
-                Observation = createPickList.Observation,
-                IdCauseServi = createPickList.IdCauseServi,
-                PrintedServi = createPickList.PrintedServi,
-                DemandeAnnulation = createPickList.DemandeAnnulation,
-                DemandeSuppPar = createPickList.DemandeSuppPar,
-                ApprobSuppPar = createPickList.ApprobSuppPar,
+                NbUSServi = null,
+                NbUSRecept = null,
+                Observation = null,
+                IdCauseServi = null,
+                PrintedServi = null,
+                DemandeAnnulation = null,
+                DemandeSuppPar = null,
+                ApprobSuppPar = null,
                 DateDemandeSuppression = null,
                 DateApprobSuppression = null,
-                NbUSReceptCond = createPickList.NbUSReceptCond,
-                SetEmp = createPickList.SetEmp,
+                NbUSReceptCond = null,
+                SetEmp = null,
                 LigneProductionId = createPickList.LigneProductionId,
                 StatusId = createPickList.StatusId
 
@@ -73,26 +84,7 @@ namespace GMC.API.Controllers
                 return NotFound();
             }
 
-            entityToUpdate.NumPickList = updatePickList.NumPickList;
-            entityToUpdate.Magasin = updatePickList.Magasin;
-            entityToUpdate.DateMaj = DateTime.Now;
-            entityToUpdate.TypePickList = updatePickList.TypePickList;
-            entityToUpdate.CodeProduit = updatePickList.CodeProduit;
-            entityToUpdate.DateLivraison = updatePickList.DateLivraison;
-            entityToUpdate.DateServi = updatePickList.DateServi;
-            entityToUpdate.NbUSServi = updatePickList.NbUSServi;
-            entityToUpdate.NbUSRecept = updatePickList.NbUSRecept;
-            entityToUpdate.Observation = updatePickList.Observation;
-            entityToUpdate.IdCauseServi = updatePickList.IdCauseServi;
-            entityToUpdate.PrintedServi = updatePickList.PrintedServi;
-            entityToUpdate.DemandeAnnulation = updatePickList.DemandeAnnulation;
-            entityToUpdate.DemandeSuppPar = updatePickList.DemandeSuppPar;
-            entityToUpdate.ApprobSuppPar = updatePickList.ApprobSuppPar;
-            entityToUpdate.DateDemandeSuppression = updatePickList.DateDemandeSuppression;
-            entityToUpdate.DateApprobSuppression = updatePickList.DateApprobSuppression;
-            entityToUpdate.NbUSReceptCond = updatePickList.NbUSReceptCond;
-            entityToUpdate.SetEmp = updatePickList.SetEmp;
-            entityToUpdate.LigneProductionId = updatePickList.LigneProductionId;
+            
             entityToUpdate.StatusId = updatePickList.StatusId;
 
 
@@ -100,6 +92,24 @@ namespace GMC.API.Controllers
             var updatedPickList = await pickListService.UpdatePickListAsync(entityToUpdate);
             return Ok(updatedPickList);
         }
+        [HttpPut("ByNumPickList/{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateNumPickList updateNumPickList)
+        {
+            var entityToUpdate = await pickListService.GetPickListAsync(id);
+            if (entityToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            
+            entityToUpdate.NumPickList = updateNumPickList.NumPickList;
+
+
+
+            var updatedPickList = await pickListService.UpdatePickListAsync(entityToUpdate);
+            return Ok(updatedPickList);
+        }
+
 
         // DELETE api/<PickListController>/5
         [HttpDelete("{id}")]
@@ -110,6 +120,12 @@ namespace GMC.API.Controllers
                 return NotFound();
             var isSucces = await pickListService.DeletePickListAsync(id);
             return Ok();
+        }
+        [HttpGet("checkCode/{code}")]
+        public async Task<ActionResult<bool>> CheckCodeExists(string code)
+        {
+            var result = await dataContext.PickList.AnyAsync(lp => lp.NumPickList == code);
+            return Ok(result);
         }
     }
 }

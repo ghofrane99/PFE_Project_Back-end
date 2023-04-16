@@ -4,6 +4,7 @@ using GMC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMC.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230407034738_PickListAllowNull")]
+    partial class PickListAllowNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,7 @@ namespace GMC.Data.Migrations
                     b.Property<string>("Emplacement")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("NombreUS")
+                    b.Property<int>("NombreUS")
                         .HasColumnType("int");
 
                     b.Property<int>("PickListId")
@@ -45,7 +48,7 @@ namespace GMC.Data.Migrations
                     b.Property<int>("QuantiteDemande")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Skipped")
+                    b.Property<int>("Skipped")
                         .HasColumnType("int");
 
                     b.Property<int>("StatusId")

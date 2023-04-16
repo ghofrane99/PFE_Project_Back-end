@@ -2,7 +2,8 @@
 
 namespace GMC.API.ViewModel.Update
 {
-    public class UpdateDetailPickList : DetailPickListViewModel
+    public class UpdateDetailPickList 
     {
+        public int StatusId { get; set; }
     }
 }

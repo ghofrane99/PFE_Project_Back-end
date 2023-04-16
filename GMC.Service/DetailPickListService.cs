@@ -40,7 +40,7 @@ namespace GMC.Service
             return detailPickListRepository.GetDetailPickLists();
         }
 
-        public Task<List<DetailPickList>> GetDetailPickListsAsync()
+        public Task<List<DetailPickListDTO>> GetDetailPickListsAsync()
         {
             return detailPickListRepository.GetDetailPickListsAsync();
         }

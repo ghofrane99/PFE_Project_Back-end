@@ -46,10 +46,26 @@ namespace GMC.Data
             return detailPickLists;
         }
 
-        public Task<List<DetailPickList>> GetDetailPickListsAsync()
+        public async Task<List<DetailPickListDTO>> GetDetailPickListsAsync()
         {
 
-            var detailPickLists = dataContext.DetailPickList.Include(c => c.PickList).Include(c => c.Produit).ThenInclude(d => d.DetailPickLists).ToListAsync();
+            var detailPickLists = await dataContext.DetailPickList.Include(c => c.PickList).Include(c => c.Produit).Include(c => c.Status)
+                .Select(p => new DetailPickListDTO
+                {
+                    IdDetailPickList = p.IdPickDetail,
+                    PickList = p.PickList.NumPickList,
+                    Produit =p.Produit.CodeProduit,
+                    Emplacement =p.Emplacement,
+                    QuantiteDemande =p.QuantiteDemande,
+                    Status = p.Status.Code,
+                    NombreUS = p.NombreUS,
+                    Skipped= p.Skipped,
+                    PickListId = p.PickListId,
+                    ProduitId = p.ProduitId,
+                    StatusId = p.StatusId,
+
+
+                }).ToListAsync();
             return detailPickLists;
         }
 

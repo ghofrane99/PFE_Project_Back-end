@@ -39,7 +39,7 @@ namespace GMC.Service
             return usPickListRepository.GetUSPickLists();
         }
 
-        public Task<List<USPickList>> GetUSPickListsAsync()
+        public Task<List<USPickListDTO>> GetUSPickListsAsync()
         {
             return usPickListRepository.GetUSPickListsAsync();
         }

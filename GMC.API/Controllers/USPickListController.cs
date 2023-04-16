@@ -44,9 +44,9 @@ namespace GMC.API.Controllers
                 CodeProduit = createUSPickList.CodeProduit,
                 DateCreation = DateTime.Now,
                 DateMaj = null,
-                Source = createUSPickList.Source,
+                Source = null,
                 CreationPar = createUSPickList.CreationPar,
-                MajPar = createUSPickList.MajPar
+                MajPar = null
             };
 
             var createdUSPickList = await usPickListService.CreateUSPickListAsync(entityToAdd);
