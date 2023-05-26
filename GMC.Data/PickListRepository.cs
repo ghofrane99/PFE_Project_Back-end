@@ -69,6 +69,7 @@ namespace GMC.Data
                                               DateApprobSuppression = p.DateApprobSuppression,
                                               NbUSReceptCond = p.NbUSReceptCond,
                                               SetEmp = p.SetEmp,
+                                              CreerPar=p.CreerPar,
                                
                                               CodeLigneProduction = p.LigneProduction.CodeLigneProduction,
                                               Code = p.Status.Code,
@@ -87,6 +88,13 @@ namespace GMC.Data
         }
 
         public async Task<PickList> UpdatePickListAsync(PickList pickList)
+        {
+            dataContext.PickList.Update(pickList);
+            await dataContext.SaveChangesAsync();
+            return pickList;
+        }
+
+        public async Task<PickList> UpdatePickListNBUSAsync(PickList pickList)
         {
             dataContext.PickList.Update(pickList);
             await dataContext.SaveChangesAsync();

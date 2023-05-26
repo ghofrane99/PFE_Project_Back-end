@@ -35,6 +35,11 @@ builder.Services.AddScoped<IRemoteUSRepository, RemoteUSRepository>();
 builder.Services.AddScoped<IRemoteUSService, RemoteUSService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUSRepository, USRepository>();
+builder.Services.AddScoped<IUSService, USService>();
+builder.Services.AddSingleton<EmailService>();
+
+
 builder.Services.AddCors((corsoptions) =>
 {
     corsoptions.AddPolicy("Mypolicy", (policyoptions) =>
@@ -71,11 +76,37 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("Mypolicy");
+app.UseStaticFiles();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
+var next8AM = DateTime.Now.Date.AddHours(8);
+if (DateTime.Now > next8AM)
+{
+    next8AM = next8AM.AddDays(1);
+}
+
+TimeSpan timeUntil8AM = next8AM - DateTime.Now;
+
+Timer timer = new Timer(async _ =>
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var pickListService = scope.ServiceProvider.GetRequiredService<IPickListService>();
+        var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+        var report = await pickListService.GeneratePickListReportAsync();
+        emailService.SendEmail("service.sagemcom@gmail.com", "control.sagemcom@gmail.com", "Sujet", "Le mail marche trés bien.", report);
+    }
+}, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+
+/*DateTime now = DateTime.Now;
+
+var emailService = app.Services.GetRequiredService<EmailService>();
+
+Timer timer = new Timer(_ => emailService.SendEmail("service.sagemcom@gmail.com", "control.sagemcom@gmail.com", "Sujet", "Le mail marche trés bien."), null, TimeSpan.Zero, TimeSpan.FromMinutes(1));*/
+
 
 app.Run();

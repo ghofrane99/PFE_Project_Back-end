@@ -16,5 +16,7 @@ namespace GMC.Service
         Task<PickList> CreatePickListAsync(PickList pickList);
         Task<PickList> UpdatePickListAsync(PickList pickList);
         Task<bool> DeletePickListAsync(int pickListId);
+        Task<PickList> UpdatePickListNBUSAsync(PickList pickList);
+        Task<string> GeneratePickListReportAsync();
     }
 }

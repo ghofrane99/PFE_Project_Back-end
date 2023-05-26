@@ -69,13 +69,10 @@ namespace GMC.API.Controllers
                 return NotFound();
             }
 
-            entityToUpdate.PickListId = updateUSPickList.PickListId;
-            entityToUpdate.Quantite = updateUSPickList.Quantite;
+           
             entityToUpdate.StatusId = updateUSPickList.StatusId;
-            entityToUpdate.CodeProduit = updateUSPickList.CodeProduit;
-            entityToUpdate.DateMaj = DateTime.Now;
-            entityToUpdate.Source = updateUSPickList.Source;
-            entityToUpdate.MajPar = updateUSPickList.MajPar;
+           
+          
 
             var updatedUSPickList = await usPickListService.UpdateUSPickListAsync(entityToUpdate);
             return Ok(updatedUSPickList);

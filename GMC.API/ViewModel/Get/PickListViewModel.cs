@@ -6,7 +6,7 @@ namespace GMC.API.ViewModel.Get
     public class PickListViewModel
     {
         public string NumPickList { get; set; }
-        public string? Magasin { get; set; }
+        public string Magasin { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime? DateMaj { get; set; }
         public string? TypePickList { get; set; }
@@ -25,6 +25,7 @@ namespace GMC.API.ViewModel.Get
         public DateTime? DateApprobSuppression { get; set; }
         public int? NbUSReceptCond { get; set; }
         public string? SetEmp { get; set; }
+        public string? CreerPar { get; set; }
         public int LigneProductionId { get; set; }
         public int StatusId { get; set; }
     }

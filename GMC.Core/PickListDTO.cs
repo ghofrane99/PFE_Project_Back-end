@@ -31,7 +31,8 @@ namespace GMC.Core
         public string SetEmp { get; set; }
         public string CodeLigneProduction { get; set; }
         public string Code { get; set; }
-      
+        public string CreerPar { get; set; }
+
         public int LigneProductionId { get; set; }
         public int StatusId { get; set; }
 

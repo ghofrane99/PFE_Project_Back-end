@@ -16,6 +16,7 @@ namespace GMC.Data
         Task<List<PickListDTO>> GetPickListsAsync();
         Task<PickList> CreatePickListAsync(PickList pickList);
         Task<PickList> UpdatePickListAsync(PickList pickList);
+        Task<PickList> UpdatePickListNBUSAsync(PickList pickList);
         Task<bool> DeletePickListAsync(int pickListId);
 
     }

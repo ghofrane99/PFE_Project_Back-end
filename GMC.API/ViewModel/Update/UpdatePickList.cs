@@ -7,5 +7,6 @@ namespace GMC.API.ViewModel.Update
         
         
         public int StatusId { get; set; }
+        public DateTime DateMaj { get; set; }
     }
 }

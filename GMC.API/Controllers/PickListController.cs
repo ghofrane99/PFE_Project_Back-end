@@ -45,7 +45,7 @@ namespace GMC.API.Controllers
             var entityToAdd = new PickList()
             {
                 NumPickList = createPickList.NumPickList,
-                Magasin = null,
+                Magasin = createPickList.Magasin,
                 DateCreation = DateTime.Now,
                 DateMaj = null,
                 TypePickList = null,
@@ -64,6 +64,7 @@ namespace GMC.API.Controllers
                 DateApprobSuppression = null,
                 NbUSReceptCond = null,
                 SetEmp = null,
+                CreerPar= createPickList.CreerPar,
                 LigneProductionId = createPickList.LigneProductionId,
                 StatusId = createPickList.StatusId
 
@@ -84,9 +85,29 @@ namespace GMC.API.Controllers
                 return NotFound();
             }
 
-            
-            entityToUpdate.StatusId = updatePickList.StatusId;
 
+            entityToUpdate.StatusId = updatePickList.StatusId;
+            entityToUpdate.DateMaj = DateTime.Now;
+
+
+
+            var updatedPickList = await pickListService.UpdatePickListAsync(entityToUpdate);
+            return Ok(updatedPickList);
+        }
+        [HttpPut("UpdateNBUS/{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] UpdatePickListNBUS updatePickListNBUS)
+        {
+            var entityToUpdate = await pickListService.GetPickListAsync(id);
+            if (entityToUpdate == null)
+            {
+                return NotFound();
+            }
+
+
+            entityToUpdate.NbUSServi = updatePickListNBUS.NbUSServi;
+           entityToUpdate.NbUSRecept = updatePickListNBUS.NbUSRecept;
+            entityToUpdate.DateLivraison = updatePickListNBUS.DateLivraison;
+            entityToUpdate.DateServi= updatePickListNBUS.DateServi;
 
 
             var updatedPickList = await pickListService.UpdatePickListAsync(entityToUpdate);
@@ -101,7 +122,7 @@ namespace GMC.API.Controllers
                 return NotFound();
             }
 
-            
+
             entityToUpdate.NumPickList = updateNumPickList.NumPickList;
 
 
@@ -109,6 +130,13 @@ namespace GMC.API.Controllers
             var updatedPickList = await pickListService.UpdatePickListAsync(entityToUpdate);
             return Ok(updatedPickList);
         }
+        [HttpGet("report")]
+        public async Task<ActionResult> GetReport()
+        {
+            var pdfBase64 = await pickListService.GeneratePickListReportAsync();
+            return Ok(pdfBase64);
+        }
+
 
 
         // DELETE api/<PickListController>/5

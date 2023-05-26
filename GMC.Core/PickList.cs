@@ -31,6 +31,7 @@ namespace GMC.Core
         public DateTime? DateDemandeSuppression { get; set; }
         public DateTime? DateApprobSuppression { get; set; }
         public int? NbUSReceptCond { get; set; }
+        public string? CreerPar { get; set; } = string.Empty;
         public string? SetEmp { get; set; } = string.Empty;
         [JsonIgnore]
         public LigneProduction LigneProduction { get; set; }

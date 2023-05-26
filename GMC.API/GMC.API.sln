@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMC.API", "GMC.API.csproj", "{129B352F-5DAC-48A5-8ADF-62378C49ADEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMC.API", "GMC.API.csproj", "{129B352F-5DAC-48A5-8ADF-62378C49ADEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMC.Core", "..\GMC.Core\GMC.Core.csproj", "{F9BDECC3-47C7-4D6D-90EA-2E22DE806CCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMC.Core", "..\GMC.Core\GMC.Core.csproj", "{F9BDECC3-47C7-4D6D-90EA-2E22DE806CCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMC.Data", "..\GMC.Data\GMC.Data.csproj", "{30E56E03-3352-4953-8874-6A778C93D40E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMC.Data", "..\GMC.Data\GMC.Data.csproj", "{30E56E03-3352-4953-8874-6A778C93D40E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMC.Service", "..\GMC.Service\GMC.Service.csproj", "{0BBA5701-D4C3-46A3-8B32-1B5E234BECDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMC.Service", "..\GMC.Service\GMC.Service.csproj", "{0BBA5701-D4C3-46A3-8B32-1B5E234BECDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailReportService", "..\EmailReportService\EmailReportService.csproj", "{6DEE4175-4BE8-4151-B737-8BC455E2F6EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0BBA5701-D4C3-46A3-8B32-1B5E234BECDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BBA5701-D4C3-46A3-8B32-1B5E234BECDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BBA5701-D4C3-46A3-8B32-1B5E234BECDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEE4175-4BE8-4151-B737-8BC455E2F6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEE4175-4BE8-4151-B737-8BC455E2F6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEE4175-4BE8-4151-B737-8BC455E2F6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEE4175-4BE8-4151-B737-8BC455E2F6EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

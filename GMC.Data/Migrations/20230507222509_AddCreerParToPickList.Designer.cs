@@ -4,6 +4,7 @@ using GMC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMC.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230507222509_AddCreerParToPickList")]
+    partial class AddCreerParToPickList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,37 +344,6 @@ namespace GMC.Data.Migrations
                     b.HasKey("IdStatus");
 
                     b.ToTable("Status");
-                });
-
-            modelBuilder.Entity("GMC.Core.US", b =>
-                {
-                    b.Property<string>("NumUS")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CodeProduit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DateCodeSAG")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantite")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RefLotFRS")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SAPMag")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StockSpecial")
-                        .HasColumnType("int");
-
-                    b.HasKey("NumUS");
-
-                    b.HasIndex("NumUS")
-                        .IsUnique();
-
-                    b.ToTable("US");
                 });
 
             modelBuilder.Entity("GMC.Core.USPickList", b =>
